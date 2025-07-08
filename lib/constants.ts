@@ -1,4 +1,4 @@
-export const DEFAULT_NPM_REGISTRY = 'https://registry.npmjs.org';
+export const DEFAULT_NPM_REGISTRY =  process.env.AZ_FEED_URL || 'https://registry.npmjs.org';
 
 export const COLORIZE_BUS = 'bus';
 export const COLORIZE_COLORS = [

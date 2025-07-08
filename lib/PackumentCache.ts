@@ -28,6 +28,14 @@ export async function getNPMPackument(
     cacheEntry.registry = registry;
     packumentCache.set(moduleName, cacheEntry);
 
+    let headers = { Accept: 'application/json', Authorization: '' };
+
+    let azFeedPat = process.env.AZ_FEED_PAT;
+    if (azFeedPat) {
+      headers.Authorization =
+        `Basic ${azFeedPat}`;
+    }
+
     await fetchJSON<Packument>(`${registry}/${moduleName}`, {
       // Per
       // https://github.com/npm/registry/blob/master/docs/responses/package-metadata.md
@@ -40,7 +48,7 @@ export async function getNPMPackument(
       // So instead we're sending 'application/json'.  The responses are smaller
       // and we get full "version" objects, so we don't have to send follow-up
       // requests.
-      headers: { Accept: 'application/json' },
+      headers,
     })
       .catch(err => {
         console.warn(

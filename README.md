@@ -4,6 +4,30 @@ A tool for exploring npm modules and dependencies. Available online at https://n
 
 **Be sure to check out [the new npmgraph CLI](https://github.com/npmgraph/npmgraph-cli).**
 
+
+
+# Azure DevOPS
+
+To use Azure DevOPS artefact feed, you need to add two environment vars.
+
+**process.env.AZ_FEED_URL**  
+```export AZ_FEED_URL=https://pkgs.dev.azure.com/henkvandenbriunk/kitchensink/_packaging/FEED-NAME/npm/registry```
+
+
+**process.env.AZ_FEED_PAT**  
+Create a PAT that has `packaging` read rights.
+
+Then you need to convert that to a base64 hash, and make sure to add a `:` in front!  
+Example base64 encode input: `:<PAT>`
+
+```export AZ_FEED_URL="BASE64"```
+
+https://www.base64encode.org/
+
+
+
+
+
 ## URL API
 
 `npmgraph` diagrams can be configured using the URL parameters below.
